@@ -1,7 +1,7 @@
 {
   "name": "wapplersystems/avif",
   "license": "GPL-3.0",
-  "description": "Creates WebP copies for images (TYPO3 CMS)",
+  "description": "Creates AVIF copies for images in TYPO3",
   "type": "typo3-cms-extension",
   "homepage": "https://wappler.systems/",
   "authors": [
