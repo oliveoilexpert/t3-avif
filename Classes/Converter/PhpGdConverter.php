@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Plan2net\Webp\Converter;
+namespace WapplerSystems\Avif\Converter;
 
 use TYPO3\CMS\Core\Imaging\GraphicalFunctions;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
- * Uses the php gd library to generate webp images.
+ * Uses the php gd library to generate avif images.
  */
 final class PhpGdConverter extends AbstractConverter
 {
@@ -16,12 +16,12 @@ final class PhpGdConverter extends AbstractConverter
 
     public function convert(string $originalFilePath, string $targetFilePath): void
     {
-        if (!$this->gdSupportsWebp()) {
-            throw new \RuntimeException(\sprintf('File "%s" was not created: GD is not active or does not support webp!', $targetFilePath));
+        if (!$this->gdSupportsAvif()) {
+            throw new \RuntimeException(\sprintf('File "%s" was not created: GD is not active or does not support avif!', $targetFilePath));
         }
 
         $image = $this->getImage($originalFilePath);
-        $result = \imagewebp($image, $targetFilePath, $this->getQuality());
+        $result = \imageavif($image, $targetFilePath, $this->getQuality());
 
         if (!$result || !@\is_file($targetFilePath)) {
             throw new \RuntimeException(\sprintf('File "%s" was not created!', $targetFilePath));
@@ -40,9 +40,9 @@ final class PhpGdConverter extends AbstractConverter
         return $graphicalFunctionsObject;
     }
 
-    private function gdSupportsWebp(): bool
+    private function gdSupportsAvif(): bool
     {
-        return \function_exists('imagewebp')
+        return \function_exists('imageavif')
             && \defined('IMG_WEBP')
             && (\imagetypes() & IMG_WEBP) === IMG_WEBP;
     }

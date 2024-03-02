@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Plan2net\Webp\Converter;
+namespace WapplerSystems\Avif\Converter;
 
-use Plan2net\Webp\Service\Configuration;
+use WapplerSystems\Avif\Service\Configuration;
 use TYPO3\CMS\Core\Utility\CommandUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
- * Uses an external binary (e.g. cwebp).
+ * Uses an external binary (e.g. cavif).
  */
 final class ExternalConverter extends AbstractConverter
 {

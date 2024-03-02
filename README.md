@@ -83,10 +83,10 @@ higher filesize than the original!
 
 ### `convert_all`
 
-    # cat=basic; type=boolean; label=Convert all images in local and writable storage and save a copy in Webp format; disable to convert images in the _processed_ folder only
+    # cat=basic; type=boolean; label=Convert all images in local and writable storage and save a copy in Avif format; disable to convert images in the _processed_ folder only
     convert_all = 1
     
-Since version `1.1.0` all images in every local and writable storage will be saved as a copy in Webp format by default (instead of just images modified by TYPO3 in the storage's processed folder). If you want to revert to the previous behaviour, set this flag to `false` (disable the checkbox).
+Since version `1.1.0` all images in every local and writable storage will be saved as a copy in Avif format by default (instead of just images modified by TYPO3 in the storage's processed folder). If you want to revert to the previous behaviour, set this flag to `false` (disable the checkbox).
 
 ### `silent`
 
@@ -97,10 +97,10 @@ Since version `2.2.0` you can suppress output (stdout, stderr) from the external
 
 ### `hide_webp`
 
-    # cat=basic; type=boolean; label=Hide .webp files in backend file list module
-    hide_webp = 1
+    # cat=basic; type=boolean; label=Hide .avif files in backend file list module
+    hide_avif = 1
 
-`.webp` files are hidden by default in the backend file list module. If you want to show them to the users, disable this option.
+`.avif` files are hidden by default in the backend file list module. If you want to show them to the users, disable this option.
 
 If you need a more customized behaviour for hiding or showing the generated files (e.g. for a specific BE user group),
 you can always remove or change the `$GLOBALS['TYPO3_CONF_VARS']['SYS']['fal']['defaultFilterCallbacks']` settings

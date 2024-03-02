@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Plan2net\Webp\Service;
+namespace WapplerSystems\Avif\Service;
 
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Core\SingletonInterface;
@@ -17,7 +17,7 @@ final class Configuration implements SingletonInterface
         if (empty(self::$configuration)) {
             try {
                 self::$configuration = GeneralUtility::makeInstance(ExtensionConfiguration::class)
-                    ->get('webp');
+                    ->get('ws_avif');
             } catch (\Exception $e) {
                 // Ignore
             }

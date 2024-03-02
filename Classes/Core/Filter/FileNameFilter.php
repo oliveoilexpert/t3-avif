@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Plan2net\Webp\Core\Filter;
+namespace WapplerSystems\Avif\Core\Filter;
 
-use Plan2net\Webp\Service\Configuration;
+use WapplerSystems\Avif\Service\Configuration;
 use TYPO3\CMS\Core\Resource\Driver\DriverInterface;
 
 final class FileNameFilter
 {
     /**
-     * Remove generated webp files from file lists,
-     * i.e. files ending in .suffix.webp, but not exclusively in .webp.
+     * Remove generated avif files from file lists,
+     * i.e. files ending in .suffix.avif, but not exclusively in .avif.
      */
-    public static function filterWebpFiles(
+    public static function filterAvifFiles(
         string $itemName,
         string $itemIdentifier,
         string $parentIdentifier = '',

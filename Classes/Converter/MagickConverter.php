@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Plan2net\Webp\Converter;
+namespace WapplerSystems\Avif\Converter;
 
-use Plan2net\Webp\Service\Configuration;
+use WapplerSystems\Avif\Service\Configuration;
 use TYPO3\CMS\Core\Imaging\GraphicalFunctions;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
@@ -28,7 +28,7 @@ final class MagickConverter extends AbstractConverter
         );
 
         if (!@\is_file($targetFilePath)) {
-            throw new \RuntimeException(\sprintf('File "%s" was not created: %s!', $targetFilePath, $result ?: 'maybe missing support for webp?'));
+            throw new \RuntimeException(\sprintf('File "%s" was not created: %s!', $targetFilePath, $result ?: 'maybe missing support for avif?'));
         }
     }
 

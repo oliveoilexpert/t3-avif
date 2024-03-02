@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Plan2net\Webp\EventListener;
+namespace WapplerSystems\Avif\EventListener;
 
-use Plan2net\Webp\Converter\Exception\ConvertedFileLargerThanOriginalException;
-use Plan2net\Webp\Converter\Exception\WillNotRetryWithConfigurationException;
-use Plan2net\Webp\Service\Configuration;
-use Plan2net\Webp\Service\Webp as WebpService;
+use WapplerSystems\Avif\Converter\Exception\ConvertedFileLargerThanOriginalException;
+use WapplerSystems\Avif\Converter\Exception\WillNotRetryWithConfigurationException;
+use WapplerSystems\Avif\Service\Configuration;
+use WapplerSystems\Avif\Service\Avif as AvifService;
 use TYPO3\CMS\Core\Log\LogManager;
 use TYPO3\CMS\Core\Resource\Event\AfterFileProcessingEvent;
 use TYPO3\CMS\Core\Resource\File;
@@ -29,7 +29,7 @@ final class AfterFileProcessing
     }
 
     /**
-     * Process a file using the configured adapter to create a webp copy.
+     * Process a file using the configured adapter to create a avif copy.
      *
      * @param FileInterface|File $file
      */
@@ -53,40 +53,40 @@ final class AfterFileProcessing
             /** @var ProcessedFileRepository $processedFileRepository */
             $processedFileRepository = GeneralUtility::makeInstance(ProcessedFileRepository::class);
             // This will either return an existing file or create a new one
-            $processedFileWebp = $processedFileRepository->findOneByOriginalFileAndTaskTypeAndConfiguration(
+            $processedFileAvif = $processedFileRepository->findOneByOriginalFileAndTaskTypeAndConfiguration(
                 $file,
                 $taskType,
                 $configuration + [
-                    'webp' => true,
+                    'avif' => true,
                 ]
             );
             // Check if reprocessing is required
-            if (!$this->needsReprocessing($processedFileWebp)) {
+            if (!$this->needsReprocessing($processedFileAvif)) {
                 return;
             }
 
             $logger = GeneralUtility::makeInstance(LogManager::class)->getLogger(__CLASS__);
             try {
-                /** @var WebpService $service */
-                $service = GeneralUtility::makeInstance(WebpService::class);
-                $service->process($processedFile, $processedFileWebp);
+                /** @var AvifService $service */
+                $service = GeneralUtility::makeInstance(AvifService::class);
+                $service->process($processedFile, $processedFileAvif);
 
                 // This will add or update
-                $processedFileRepository->add($processedFileWebp);
+                $processedFileRepository->add($processedFileAvif);
             } catch (WillNotRetryWithConfigurationException $e) {
                 $logger->notice($e->getMessage());
             } catch (ConvertedFileLargerThanOriginalException $e) {
                 $logger->warning($e->getMessage());
-                $this->removeProcessedFile($processedFileWebp);
+                $this->removeProcessedFile($processedFileAvif);
             } catch (\Exception $e) {
                 $logger->error(
                     \sprintf(
-                        'Failed to convert image "%s" to webp with: %s',
+                        'Failed to convert image "%s" to avif with: %s',
                         $processedFile->getIdentifier(),
                         $e->getMessage()
                     )
                 );
-                $this->removeProcessedFile($processedFileWebp);
+                $this->removeProcessedFile($processedFileAvif);
             }
         }
     }
@@ -97,7 +97,7 @@ final class AfterFileProcessing
             return false;
         }
 
-        if (!WebpService::isSupportedMimeType($processedFile->getOriginalFile()->getMimeType())) {
+        if (!AvifService::isSupportedMimeType($processedFile->getOriginalFile()->getMimeType())) {
             return false;
         }
 

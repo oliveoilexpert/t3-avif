@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Plan2net\Webp\Converter;
+namespace WapplerSystems\Avif\Converter;
 
 interface Converter
 {
     public function __construct(string $parameters);
 
     /**
-     * Converts a file $originalFilePath to webp in $targetFilePath.
+     * Converts a file $originalFilePath to avif in $targetFilePath.
      *
      * @throws \RuntimeException
      */

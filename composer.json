@@ -3,7 +3,7 @@
   "license": "GPL-3.0",
   "description": "Creates WebP copies for images (TYPO3 CMS)",
   "type": "typo3-cms-extension",
-  "homepage": "https://www.plan2.net/",
+  "homepage": "https://wappler.systems/",
   "authors": [
     {
       "name": "Wolfgang Klinger",
@@ -36,12 +36,12 @@
   },
   "autoload": {
     "psr-4": {
-      "Plan2net\\Webp\\": "Classes/"
+      "WapplerSystems\\Avif\\": "Classes/"
     }
   },
   "extra": {
     "typo3/cms": {
-      "extension-key": "webp",
+      "extension-key": "ws_avif",
       "cms-package-dir": "{$vendor-dir}/typo3/cms",
       "web-dir": ".Build/Web"
     }

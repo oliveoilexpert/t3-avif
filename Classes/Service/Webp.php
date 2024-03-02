@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Plan2net\Webp\Service;
+namespace WapplerSystems\Avif\Service;
 
 use Doctrine\DBAL\Exception;
-use Plan2net\Webp\Converter\Converter;
-use Plan2net\Webp\Converter\Exception\ConvertedFileLargerThanOriginalException;
-use Plan2net\Webp\Converter\Exception\WillNotRetryWithConfigurationException;
+use WapplerSystems\Avif\Converter\Converter;
+use WapplerSystems\Avif\Converter\Exception\ConvertedFileLargerThanOriginalException;
+use WapplerSystems\Avif\Converter\Exception\WillNotRetryWithConfigurationException;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Resource\File;
 use TYPO3\CMS\Core\Resource\FileInterface;
 use TYPO3\CMS\Core\Resource\ProcessedFile;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
-final class Webp
+final class Avif
 {
     /**
      * @param FileInterface|File $originalFile
@@ -24,19 +24,19 @@ final class Webp
      */
     public function process(FileInterface $originalFile, ProcessedFile $processedFile): void
     {
-        if ('webp' === $originalFile->getExtension()) {
+        if ('avif' === $originalFile->getExtension()) {
             return;
         }
 
-        $processedFile->setName($originalFile->getName() . '.webp');
-        $processedFile->setIdentifier($originalFile->getIdentifier() . '.webp');
+        $processedFile->setName($originalFile->getName() . '.avif');
+        $processedFile->setIdentifier($originalFile->getIdentifier() . '.avif');
 
         $originalFilePath = $originalFile->getForLocalProcessing(false);
         if (!@\is_file($originalFilePath)) {
             return;
         }
 
-        $targetFilePath = "{$originalFilePath}.webp";
+        $targetFilePath = "{$originalFilePath}.avif";
 
         $converterClass = Configuration::get('converter');
         $parameters = $this->getParametersForMimeType($originalFile->getMimeType());
@@ -99,8 +99,8 @@ final class Webp
     private function saveFailedAttempt(int $fileId, string $configuration): void
     {
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
-            ->getQueryBuilderForTable('tx_webp_failed');
-        $queryBuilder->insert('tx_webp_failed')
+            ->getQueryBuilderForTable('tx_wsavif_failed');
+        $queryBuilder->insert('tx_wsavif_failed')
             ->values([
                 'file_id' => $fileId,
                 'configuration' => $configuration,
@@ -112,11 +112,11 @@ final class Webp
     private function hasFailedAttempt(int $fileId, string $configuration): bool
     {
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
-            ->getQueryBuilderForTable('tx_webp_failed');
+            ->getQueryBuilderForTable('tx_wsavif_failed');
 
         try {
             return (bool) $queryBuilder->count('uid')
-                ->from('tx_webp_failed')
+                ->from('tx_wsavif_failed')
                 ->where(
                     $queryBuilder->expr()->eq('file_id', $fileId),
                     $queryBuilder->expr()->eq('configuration_hash',

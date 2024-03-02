@@ -10,7 +10,7 @@ Extension Name
 .. only:: html
 
 	:Classification:
-		webp
+		avif
 
 	:Version:
 		|release|
