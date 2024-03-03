@@ -1,13 +1,17 @@
 {
   "name": "wapplersystems/avif",
   "license": "GPL-3.0",
-  "description": "Creates AVIF copies for images in TYPO3",
+  "description": "Creates AVIF copies for images in TYPO3, based on webp extension",
   "type": "typo3-cms-extension",
   "homepage": "https://wappler.systems/",
   "authors": [
     {
-      "name": "Wolfgang Klinger",
+      "name": "Sven Wappler",
       "role": "Lead Developer"
+    },
+    {
+      "name": "Wolfgang Klinger",
+      "role": "Developer"
     },
     {
       "name": "Martin Kutschker",

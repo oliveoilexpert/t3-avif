@@ -1,23 +1,17 @@
 <?php
 
 $EM_CONF['ws_avif'] = [
-    'title' => 'Creates WebP copies for images',
-    'description' => 'Creates WebP copies of all jpeg and png images',
+    'title' => 'Creates Avif copies for images',
+    'description' => 'Creates Avif copies of all jpeg and png images',
     'category' => 'fe',
-    'author' => 'Wolfgang Klinger',
-    'author_email' => 'wk@plan2.net',
+    'author' => 'Sven Wappler',
+    'author_email' => 'typo3@wappler.systems',
     'state' => 'stable',
-    'author_company' => 'plan2net GmbH',
+    'author_company' => 'WapplerSystems',
     'version' => '12.0.0',
     'constraints' => [
         'depends' => [
             'typo3' => '12.4.0-12.9.99',
         ],
-        'conflicts' => [
-        ],
-        'suggests' => [
-        ],
-    ],
-    'suggests' => [
     ],
 ];

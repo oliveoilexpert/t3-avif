@@ -16,8 +16,11 @@ final class MagickConverter extends AbstractConverter
     public function convert(string $originalFilePath, string $targetFilePath): void
     {
         $parameters = $this->parameters;
-        if (Configuration::get('use_system_settings')) {
-            $parameters .= ' ' . $GLOBALS['TYPO3_CONF_VARS']['GFX']['processor_stripColorProfileCommand'];
+
+        if (Configuration::get('use_system_settings') === '1') {
+            // TODO: migrate old code
+            //$parameters .= ' ' . $GLOBALS['TYPO3_CONF_VARS']['GFX']['processor_stripColorProfileParameters'];
+            $parameters .= ' +profile \'*\'';
             $parameters = trim($parameters);
         }
 
