@@ -1,26 +1,26 @@
-# WebP for TYPO3 CMS
+# Avif for TYPO3 CMS
 
 ## What does it do?
 
-Adds an automagically created _WebP_ copy for every processed jpg/jpeg/png/gif image in the format
+Adds an automagically created _Avif_ copy for every processed jpg/jpeg/png/gif image in the format
 
-    original.ext.webp
+    original.ext.avif
     
-## What is WebP and why do I want it?
+## What is Avif and why do I want it?
 
-> WebP is a modern image format that provides superior lossless and lossy compression for images on the web. Using WebP, webmasters and web developers can create smaller, richer images that make the web faster.
+> Avif is a modern image format that provides superior lossless and lossy compression for images on the web. Using Avif, webmasters and web developers can create smaller, richer images that make the web faster.
 >  
->  WebP lossless images are 26% smaller in size compared to PNGs. WebP lossy images are 25-34% smaller than comparable JPEG images at equivalent SSIM quality index.
+>  Avif lossless images are 26% smaller in size compared to PNGs. Avif lossy images are 25-34% smaller than comparable JPEG images at equivalent SSIM quality index.
 >  
->  Lossless WebP supports transparency (also known as alpha channel) at a cost of just 22% additional bytes. For cases when lossy RGB compression is acceptable, lossy WebP also supports transparency, typically providing 3× smaller file sizes compared to PNG.
+>  Lossless Avif supports transparency (also known as alpha channel) at a cost of just 22% additional bytes. For cases when lossy RGB compression is acceptable, lossy Avif also supports transparency, typically providing 3× smaller file sizes compared to PNG.
 
-   — source: https://developers.google.com/speed/webp/
+   — source: https://developers.google.com/speed/avif/
 
 ## Installation
 
 Add via composer: 
 
-    composer require "plan2net/webp"
+    composer require "wapplersystems/avif"
 
 * Install and activate the extension in the Extension manager 
 * Flush TYPO3 and PHP Cache
@@ -29,25 +29,25 @@ Add via composer:
 
 ## Update
 
-* Save the extension settings at least once (through `Admin Tools > Settings > Extension Configuration > webp`) after an update to save the new default settings in your local configuration
+* Save the extension settings at least once (through `Admin Tools > Settings > Extension Configuration > avif`) after an update to save the new default settings in your local configuration
 
 ## Requirements
 
-You can either use the installed Imagemagick or GraphicsMagick you already use for TYPO3 image manipulation if it supports webp (see below) or you can use any other external binary available on your server (e.g. [_cwebp_](https://developers.google.com/speed/webp/docs/cwebp)).
+You can either use the installed Imagemagick or GraphicsMagick you already use for TYPO3 image manipulation if it supports avif (see below) or you can use any other external binary available on your server (e.g. [_cavif_](https://developers.google.com/speed/avif/docs/cavif)).
 
 You can test the support of GraphicsMagick with e.g.:
 
-    gm version | grep WebP
+    gm version | grep Avif
 
 (should return `yes`)
 
 or using ImageMagick with e.g.: 
 
-    convert version | grep webp
+    convert version | grep avif
 
-(should return a list of supported formats including `webp`)
+(should return a list of supported formats including `avif`)
 
-These are examples, check your system documentation for further information on how to verify webp support on your platform.
+These are examples, check your system documentation for further information on how to verify avif support on your platform.
 
 ## Extension settings
 
@@ -58,27 +58,27 @@ You can set parameters for the conversion in the extension configuration.
 ### `parameters`
 
 ```
-parameters = image/jpeg:-quality 85 -define webp:lossless=false|image/png:-quality 75 -define webp:lossless=true|image/gif::-quality 85 -define webp:lossless=true
+parameters = image/jpeg:-quality 85 -define avif:lossless=false|image/png:-quality 75 -define avif:lossless=true|image/gif::-quality 85 -define avif:lossless=true
 ```
 
 You find a list of possible options here:
 
-https://www.imagemagick.org/script/webp.php
+https://www.imagemagick.org/script/avif.php
 http://www.graphicsmagick.org/GraphicsMagick.html
 
 If you want to use an external binary, you have to supply an option string with exactly two `%s` placeholders for the original file and the target file name.
 E.g.:
 
 ```
-image/jpeg::/usr/bin/cwebp -jpeg_like %s -o %s|image/png::/usr/bin/cwebp -lossless %s -o %s|image/gif::/usr/bin/gif2webp %s -o %s
+image/jpeg::/usr/bin/cavif -jpeg_like %s -o %s|image/png::/usr/bin/cavif -lossless %s -o %s|image/gif::/usr/bin/gif2avif %s -o %s
 ```
 
-https://developers.google.com/speed/webp/docs/cwebp
+https://developers.google.com/speed/avif/docs/cavif
 
 *Warning*
 
 Try to set a higher value for `quality` first if the image does not fit your expectations,
-before trying to use `webp:lossless=true`, as this could even lead to a
+before trying to use `avif:lossless=true`, as this could even lead to a
 higher filesize than the original!
 
 ### `convert_all`
@@ -95,7 +95,7 @@ Since version `1.1.0` all images in every local and writable storage will be sav
     
 Since version `2.2.0` you can suppress output (stdout, stderr) from the external converter (Linux only).
 
-### `hide_webp`
+### `hide_avif`
 
     # cat=basic; type=boolean; label=Hide .avif files in backend file list module
     hide_avif = 1
@@ -130,16 +130,16 @@ Please **adapt** the following to _your specific needs_, this is **only an examp
 
 Add a map directive in your global nginx configuration:
 
-    map $http_accept $webp_suffix {
+    map $http_accept $avif_suffix {
         default   "";
-        "~*webp"  ".webp";
+        "~*avif"  ".avif";
     }
 
 If you use _Cloudflare_ the following might better suit your needs:
 
-    map $http_accept $webpok {
+    map $http_accept $avifok {
         default   0;
-        "~*webp"  1;
+        "~*avif"  1;
     }
 
     map $http_cf_cache_status $iscf {
@@ -147,9 +147,9 @@ If you use _Cloudflare_ the following might better suit your needs:
         ""        0;
     }
 
-    map $webpok$iscf $webp_suffix {
+    map $avifok$iscf $avif_suffix {
         11          "";
-        10          ".webp";
+        10          ".avif";
         01          "";
         00          "";
     }
@@ -159,16 +159,16 @@ Add these rules to your `server` configuration:
     location ~* ^.+\.(png|gif|jpe?g)$ {
             add_header Vary "Accept";
             add_header Cache-Control "public, no-transform";
-            try_files $uri$webp_suffix $uri =404;
+            try_files $uri$avif_suffix $uri =404;
     }
 
 Make sure that there are no other rules that prevent further rules or already apply to the specified image formats and prevent further execution!
 
-You can also add a browser restriction if your audience uses old versions of Safari, etc., so no _webp_ is served to them.
+You can also add a browser restriction if your audience uses old versions of Safari, etc., so no _avif_ is served to them.
 
     location ~* ^.+\.(png|gif|jpe?g)$ {
         if ($http_user_agent !~* (Chrome|Firefox|Edge)) {
-            set $webp_suffix "";
+            set $avif_suffix "";
         }
         …
 
@@ -177,15 +177,15 @@ You can also add a browser restriction if your audience uses old versions of Saf
 We assume that module `mod_rewrite.c` is enabled.
 
     RewriteEngine On
-    AddType image/webp .webp
+    AddType image/avif .avif
 
 is already part of the TYPO3 htaccess template in
 `typo3/sysext/install/Resources/Private/FolderStructureTemplateFiles/root-htaccess`
 
-    RewriteCond %{HTTP_ACCEPT} image/webp
+    RewriteCond %{HTTP_ACCEPT} image/avif
     RewriteCond %{REQUEST_FILENAME} (.*)\.(png|gif|jpe?g)$
-    RewriteCond %{REQUEST_FILENAME}\.webp -f
-    RewriteRule ^ %{REQUEST_FILENAME}\.webp [L,T=image/webp]
+    RewriteCond %{REQUEST_FILENAME}\.avif -f
+    RewriteRule ^ %{REQUEST_FILENAME}\.avif [L,T=image/avif]
 
     <IfModule mod_headers.c>
         <FilesMatch "\.(png|gif|jpe?g)$">
@@ -195,33 +195,33 @@ is already part of the TYPO3 htaccess template in
 
 Make sure that there are no other rules that prevent further rules or already apply to the specified image formats and prevent further execution!
 
-You can also add a browser restriction if your audience uses old versions of Safari, etc., so no _webp_ is served to them.
+You can also add a browser restriction if your audience uses old versions of Safari, etc., so no _avif_ is served to them.
 
-    RewriteCond %{HTTP_ACCEPT} image/webp
+    RewriteCond %{HTTP_ACCEPT} image/avif
     RewriteCond %{HTTP_USER_AGENT} ^.*(Chrome|Firefox|Edge).*$ [NC]
     …
 
-## Verify successful webp image generation and delivery
+## Verify successful avif image generation and delivery
 
 To make sure that everything works as expected you need to check two things:
 
-1. WebP image generation on the webserver
-2. successful delivery of WebP images to the client
+1. Avif image generation on the webserver
+2. successful delivery of Avif images to the client
 
-### WebP image generation
+### Avif image generation
 
-Go to `fileadmin/_processed_` and check the subfolders for files with `.webp` extension. For every processed image file there should be a second file with the same filename plus `.webp` extension:
+Go to `fileadmin/_processed_` and check the subfolders for files with `.avif` extension. For every processed image file there should be a second file with the same filename plus `.avif` extension:
 
 ```
 csm_foo-bar_4f3d6bb7d0.jpg
-csm_foo-bar_4f3d6bb7d0.jpg.webp
+csm_foo-bar_4f3d6bb7d0.jpg.avif
 ```
 
-### Delivery of WebP images to the client
+### Delivery of Avif images to the client
 
 Open a processed jpg or png image (see above) in your browser, e.g. `https://domain.tld/fileadmin/_processed_/b/2/csm_foo-bar_4f3d6bb7d0.jpg`
 
-Check the response headers in the developer tools of your browser. Despite the file suffix `.jpg`, you should get `Content-Type: image/webp`.
+Check the response headers in the developer tools of your browser. Despite the file suffix `.jpg`, you should get `Content-Type: image/avif`.
 
 ![Extension settings](Resources/Public/Documentation/headers.png)
 
@@ -233,11 +233,11 @@ Every problem is logged to the TYPO3 log (since version 2.0), normally found in 
 Converted files that are larger than the original are removed automatically (since version 2.1.0)
 and the conversion will not be retried with the same configuration.
 
-If you find that your webp images don't look like the original images (much darker, for example), make sure you have the correct profile set in the system setting `GFX/processor_colorspace` (e.g. `sRGB`). Remember to clean up any processed files after this change.
+If you find that your avif images don't look like the original images (much darker, for example), make sure you have the correct profile set in the system setting `GFX/processor_colorspace` (e.g. `sRGB`). Remember to clean up any processed files after this change.
 
 ## Removing processed files
 
-You can remove the created .webp files at any time within the TYPO3 CMS backend.
+You can remove the created .avif files at any time within the TYPO3 CMS backend.
 
 * Go to Admin Tools > Remove Temporary Assets
 * Click the _Scan temporary files_ button
@@ -249,8 +249,8 @@ Although the button names only the path of the `_processed_` folder, all process
 
 You can get an equal result with using the Apache _mod_pagespeed_ or nginx _ngx_pagespeed_ modules from Google https://developers.google.com/speed/pagespeed/module/ with a configuration like:
 
-    pagespeed EnableFilters convert_jpeg_to_webp;
-    pagespeed EnableFilters convert_to_webp_lossless;
+    pagespeed EnableFilters convert_jpeg_to_avif;
+    pagespeed EnableFilters convert_to_avif_lossless;
     
 but that requires more knowledge to set up.
 
@@ -260,7 +260,7 @@ Note that this extension produces an additional load on your server (each proces
 
 ## Inspiration
 
-This extension was inspired by [Angela Dudtkowski](https://www.clickstorm.de/agentur/)'s _cs_webp_ extension that has some flaws and got no update since early 2017. Thanks Angela :-) 
+This extension was inspired by [Angela Dudtkowski](https://www.clickstorm.de/agentur/)'s _cs_avif_ extension that has some flaws and got no update since early 2017. Thanks Angela :-) 
 
 Thanks to Xavier Perseguers for the _Cloudflare_ hint.
 
