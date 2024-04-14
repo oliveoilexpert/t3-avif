@@ -3,3 +3,4 @@
 /php-cs-fixer.json
 /composer.lock
 /vendor
+/Documentation-GENERATED-temp
