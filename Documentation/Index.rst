@@ -10,7 +10,7 @@ Extension Name
 .. only:: html
 
 	:Classification:
-		avif
+		ws_avif
 
 	:Version:
 		|release|
@@ -19,19 +19,19 @@ Extension Name
 		English
 
 	:Description:
-		Manual covering the TYPO3 extension *"webp"*.
+		Manual covering the TYPO3 extension *"ws_avif"*.
 
 	:Keywords:
-		webp,jpg,jpeg,image,performance
+		avif,jpg,jpeg,image,performance
 
 	:Copyright:
-		2019
+		2024
 
 	:Author:
-		Wolfgang Klinger
+		Sven Wappler
 
 	:Email:
-		office@plan2.net
+		typo3@wappler.systems
 
 	:License:
 		This document is published under the Open Publication License

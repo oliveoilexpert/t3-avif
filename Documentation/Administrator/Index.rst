@@ -25,7 +25,7 @@ GraphicsMagick
 
 .. code-block:: bash
 
-  gm version | grep WebP
+  gm version | grep avif
 
 This should return "*yes*".
 
@@ -67,14 +67,13 @@ You can set parameters for the conversion in the extension configuration.
 
 You find a list of possible options here:
 
-:ImageMagick:    https://www.imagemagick.org/script/avif.php
 :GraphicsMagick: http://www.graphicsmagick.org/GraphicsMagick.html and http://www.graphicsmagick.org/convert.html
 
 Default value is:
 
 .. code-block:: none
 
-  -quality 95 -define avif:lossless=false
+  -quality 40 -define avif:lossless=false
 
 This has (in our experience) a minor to no impact on visual difference to the original image.
 

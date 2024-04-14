@@ -7,13 +7,13 @@ Links
 -----
 
 :TER:
-	https://extensions.typo3.org/extension/webp
+	https://extensions.typo3.org/extension/ws_avif
 
 :Issue Tracker:
-	https://github.com/plan2net/webp/issues
+	https://github.com/WapplerSystems/t3-avif/issues
 
 :Git Repository:
-	https://github.com/plan2net/webp
+	https://github.com/WapplerSystems/t3-avif
 
 :Contact:
-	office@plan2.net
+	typo3@wappler.systems
