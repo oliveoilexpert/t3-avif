@@ -55,12 +55,11 @@ You can set parameters for the conversion in the extension configuration.
 ### `parameters`
 
 ```
-parameters = image/jpeg:-quality 85 -define avif:lossless=false|image/png:-quality 75 -define avif:lossless=true|image/gif::-quality 85 -define avif:lossless=true
+parameters = image/jpeg:-quality 40 -define avif:lossless=false|image/png:-quality 40 -define avif:lossless=true|image/gif::-quality 40 -define avif:lossless=true
 ```
 
 You find a list of possible options here:
 
-https://www.imagemagick.org/script/avif.php
 http://www.graphicsmagick.org/GraphicsMagick.html
 
 If you want to use an external binary, you have to supply an option string with exactly two `%s` placeholders for the original file and the target file name.
@@ -242,29 +241,12 @@ You can remove the created .avif files at any time within the TYPO3 CMS backend.
 
 Although the button names only the path of the `_processed_` folder, all processed files of the storage are actually deleted!
 
-## Alternatives
-
-You can get an equal result with using the Apache _mod_pagespeed_ or nginx _ngx_pagespeed_ modules from Google https://developers.google.com/speed/pagespeed/module/ with a configuration like:
-
-    pagespeed EnableFilters convert_jpeg_to_avif;
-    pagespeed EnableFilters convert_to_avif_lossless;
-    
-but that requires more knowledge to set up.
-
 ## Drawbacks to keep in mind
 
 Note that this extension produces an additional load on your server (each processed image is reprocessed) and possibly creates a lot of additional files that consume disk space (size varies depending on your! configuration).
 
 ## Inspiration
 
-This extension was inspired by [Angela Dudtkowski](https://www.clickstorm.de/agentur/)'s _cs_avif_ extension that has some flaws and got no update since early 2017. Thanks Angela :-) 
+This extension is a modified version of the [webp](<https://extensions.typo3.org/extension/webp/>) extension.
 
-Thanks to Xavier Perseguers for the _Cloudflare_ hint.
-
-Thanks to Marcus Förster for simplifying the Apache rewrite rules.
-
-## Spread some love
-
-Send us a postcard from your favourite place and tell us how much you love TYPO3 and OpenSource:
-> plan2net GmbH, Sieveringerstraße 37, 1190 Vienna, Austria
 
