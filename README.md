@@ -8,13 +8,10 @@ Adds an automagically created _Avif_ copy for every processed jpg/jpeg/png/gif i
     
 ## What is Avif and why do I want it?
 
-> Avif is a modern image format that provides superior lossless and lossy compression for images on the web. Using Avif, webmasters and web developers can create smaller, richer images that make the web faster.
->  
->  Avif lossless images are 26% smaller in size compared to PNGs. Avif lossy images are 25-34% smaller than comparable JPEG images at equivalent SSIM quality index.
->  
->  Lossless Avif supports transparency (also known as alpha channel) at a cost of just 22% additional bytes. For cases when lossy RGB compression is acceptable, lossy Avif also supports transparency, typically providing 3× smaller file sizes compared to PNG.
+> AV1 Image File Format (AVIF) is an open, royalty-free image file format specification for storing images or image sequences compressed with AV1 in the HEIF container format.[1][2] It competes with HEIC, which uses the same container format built upon ISOBMFF, but HEVC for compression. Version 1.0.0 of the AVIF specification was finalized in February 2019.
 
-   — source: https://developers.google.com/speed/avif/
+> In a number of tests by Netflix in 2020, AVIF showed better compression efficiency than JPEG as well as better detail preservation, fewer blocking artifacts and less color bleeding around hard edges in composites of natural images, text, and graphics
+
 
 ## Installation
 
@@ -29,7 +26,7 @@ Add via composer:
 
 ## Update
 
-* Save the extension settings at least once (through `Admin Tools > Settings > Extension Configuration > avif`) after an update to save the new default settings in your local configuration
+* Save the extension settings at least once (through `Admin Tools > Settings > Extension Configuration > ws_avif`) after an update to save the new default settings in your local configuration
 
 ## Requirements
 
